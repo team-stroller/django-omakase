@@ -99,10 +99,30 @@ Setup your Database
 ===================
 
 Install postgres. Create a DB with your project name and a user with its role
-and password as the project_name with the command below.
+and password as the project_name with the command below::
 
     $ createdb <project_role>
     $ createuser -P
+
+Setup Production
+================
+
+You need to set the `DJANGO_SETTINGS_MODULE` environment variable to
+`"{{ project_name }}.settings.production"` on your production environment::
+
+    $ export DJANGO_SETTINGS_MODULE=icecream.settings.production
+
+On Heroku::
+
+   $ heroku config:set DJANGO_SETTINGS_MODULE=icecream.settings.production -r heroku
+
+You need to set a `SECRET_KEY`::
+
+    $ export SECRET_KEY=mysupersecretkey
+
+On Heroku::
+
+   $ heroku config:set SECRET_KEY=mysupersecretkey -r heroku
 
 Acknowledgements
 ================
