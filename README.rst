@@ -43,34 +43,30 @@ To create a new Django project called '**icecream**' using django-omakase, run t
 
     $ django-admin.py startproject --template=https://github.com/team-stroller/django-omakase/zipball/master --extension=py,rst,html --name=Procfile icecream
 
-Installation of Dependencies
-=============================
+Setup Development Environment
+==============================
 
-Depending on where you are installing dependencies:
-
-In development::
+Install the project's local dependencies::
 
     $ pip install -r requirements/local.txt
-
-For production::
-
-    $ pip install -r requirements.txt
-
-*note: We install production requirements this way because many Platforms as a
-Services expect a requirements.txt file in the root of projects.*
-
-Setup your Local Database
-=========================
 
 Install postgres. Create a DB and a superuser. The database's name, username, and password must all be the project name (icecream)::
 
     $ createdb icecream
     $ createuser -P
+    $ python icecream/manage.py syncdb
+    $ python icecream/manage.py migrate djcelery
+
+Install foreman. Run your development server::
+
+    $ foreman start
 
 Setup Production on Heroku
 ==========================
 
-You will need the `Heroku Toolbelt`_ installed.
+You will need the `Heroku Toolbelt`_ installed. You can use this to create your Heroku app::
+
+    $ heroku create
 
 .. _Heroku Toolbelt: https://toolbelt.heroku.com/
 
