@@ -2,7 +2,14 @@
 
 
 from os.path import abspath, basename, dirname, join, normpath
+from os import environ
 from sys import path
+import urlparse
+
+import djcelery
+
+redis_url = urlparse.urlparse(environ.get('REDISCLOUD_URL',
+                                          'redis://localhost:6379/0'))
 
 
 ########## PATH CONFIGURATION
@@ -56,9 +63,34 @@ DATABASES = {
 ########## END DATABASE CONFIGURATION
 
 
+########## CACHE CONFIGURATION
+CACHES = {
+    'default': {
+        'BACKEND': 'redis_cache.RedisCache',
+        'LOCATION': '%s:%s' % (redis_url.hostname, redis_url.port),
+        'OPTIONS': {
+            'DB': 0,
+            'PASSWORD': redis_url.password,
+        }
+    }
+}
+########## END CACHE CONFIGURATION
+
+
+########## CELERY SETTINGS
+djcelery.setup_loader()
+
+BROKER_URL = redis_url.geturl()
+BROKER_BACKEND = "redis"
+REDIS_CONNECT_RETRY = True
+CELERY_RESULT_BACKEND = BROKER_URL
+CELERY_REDIS_MAX_CONNECTIONS = 256
+########## END CELERY SETTINGS
+
+
 ########## GENERAL CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#time-zone
-TIME_ZONE = 'America/Los_Angeles'
+TIME_ZONE = 'Europe/Stockholm'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#language-code
 LANGUAGE_CODE = 'en-us'
@@ -67,10 +99,10 @@ LANGUAGE_CODE = 'en-us'
 SITE_ID = 1
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#use-i18n
-USE_I18N = True
+USE_I18N = False
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#use-l10n
-USE_L10N = True
+USE_L10N = False
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#use-tz
 USE_TZ = True
@@ -187,6 +219,8 @@ DJANGO_APPS = (
 THIRD_PARTY_APPS = (
     # Database migration helpers:
     'south',
+    'djcelery',
+    'gunicorn',
 )
 
 # Apps specific for this project go here.
