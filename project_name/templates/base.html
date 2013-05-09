@@ -15,7 +15,8 @@
 
   <body>
       {% templatetag openblock %} block content {% templatetag closeblock %}
-        <p>Use this document as a way to quick start any new project.</p>
+        <p>This is your new omakase project. To make your first app type:</p>
+        <pre>python {{ project_name }}/manage.py startapp chocolate_taster</pre>
       {% templatetag openblock %} endblock content {% templatetag closeblock %}
 
     <!-- place project specific Javascript in this file -->
