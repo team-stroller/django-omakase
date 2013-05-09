@@ -36,7 +36,7 @@ Working Environment
 
     $ pip install django
 
-Creating your project
+Creating your Project
 =====================
 
 To create a new Django project called '**icecream**' using django-omakase, run the following command::
@@ -59,7 +59,7 @@ For production::
 *note: We install production requirements this way because many Platforms as a
 Services expect a requirements.txt file in the root of projects.*
 
-Setup Your Local Database
+Setup your Local Database
 =========================
 
 Install postgres. Create a DB and a superuser. The database's name, username, and password must all be the project name (icecream)::
