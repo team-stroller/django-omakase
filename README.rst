@@ -79,6 +79,15 @@ django-twoscoops-project, run the following command::
 
     $ django-admin.py startproject --template=https://github.com/twoscoops/django-twoscoops-project/zipball/master --extension=py,rst,html icecream
 
+Setup production environment
+============================
+
+The manage.py file will by default include your local.py settings file so you
+need to set the `DJANGO_SETTINGS_MODULE` environment variable to
+`"{{ project_name }}.settings.production"` on your production environment. This
+goes for your testing environment or any other environments you wish to create
+settings files for.
+
 Installation of Dependencies
 =============================
 
