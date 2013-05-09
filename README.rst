@@ -95,6 +95,15 @@ For production::
 *note: We install production requirements this way because many Platforms as a
 Services expect a requirements.txt file in the root of projects.*
 
+Setup your Database
+===================
+
+Install postgres. Create a DB with your project name and a user with its role
+and password as the project_name with the command below.
+
+    $ createdb <project_role>
+    $ createuser -P
+
 Acknowledgements
 ================
 

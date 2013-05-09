@@ -7,12 +7,15 @@ TEST_DISCOVER_ROOT = SITE_ROOT
 TEST_DISCOVER_PATTERN = "test_*.py"
 ########## IN-MEMORY TEST DATABASE
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": ":memory:",
-        "USER": "",
-        "PASSWORD": "",
-        "HOST": "",
-        "PORT": "",
-    },
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': '{{ project_name }}_test',
+        'USER': '{{ project_name }}_test',
+        'PASSWORD': '{{ project_name }}_test',
+        'PORT': '5432',
+        'HOST': 'localhost',
+        'OPTIONS': {
+            'autocommit': True,
+        }
+    }
 }
