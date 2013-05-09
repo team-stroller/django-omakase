@@ -10,7 +10,7 @@ To use this project follow these steps:
 #. Install Django
 #. Create the new project using the django-two-scoops template
 #. Install additional dependencies
-#. Use the Django admin to create the project
+#. Push to production
 
 *note: these instructions show creation of a project called "icecream".  You
 should replace this name with the actual name of your project.*
@@ -18,56 +18,21 @@ should replace this name with the actual name of your project.*
 Working Environment
 ===================
 
-You have several options in setting up your working environment.  We recommend
-using virtualenv to seperate the dependencies of your project from your system's
-python environment.  If on Linux or Mac OS X, you can also use virtualenvwrapper to help manage multiple virtualenvs across different projects.
+#. Install python
+#. Install pip::
 
-Virtualenv Only
----------------
+    $ sudo easy_install pip
 
-First, make sure you are using virtualenv (http://www.virtualenv.org). Once
-that's installed, create your virtualenv::
+#. Install virtualenvwrapper::
 
-    $ virtualenv --distribute icecream
+    $ sudo pip install virtualenvwrapper
+    $ source /usr/local/bin/virtualenvwrapper.sh
 
-You will also need to ensure that the virtualenv has the project directory
-added to the path. Adding the project directory will allow `django-admin.py` to
-be able to change settings using the `--settings` flag.
+#. Create your virtualenv::
 
-Virtualenv with virtualenvwrapper
---------------------------
+    $ mkvirtualenv icecream
 
-In Linux and Mac OSX, you can install virtualenvwrapper (http://virtualenvwrapper.readthedocs.org/en/latest/),
-which will take care of managing your virtual environments and adding the
-project path to the `site-directory` for you::
-
-    $ mkdir icecream
-    $ mkvirtualenv -a icecream icecream-dev
-    $ cd icecream && add2virtualenv `pwd`
-
-Windows
-----------
-
-In Windows, or if you're not comfortable using the command line, you will need
-to add a `.pth` file to the `site-packages` of your virtualenv. If you have
-been following the book's example for the virtualenv directory (pg. 12), then
-you will need to add a python pathfile named `_virtualenv_path_extensions.pth`
-to the `site-packages`. If you have been following the book, then your
-virtualenv folder will be something like::
-
-`~/.virtualenvs/icecream/lib/python2.7/site-directory/`
-
-In the pathfile, you will want to include the following code (from
-virtualenvwrapper):
-
-    import sys; sys.__plen = len(sys.path)
-    /home/<youruser>/icecream/icecream/
-    import sys; new=sys.path[sys.__plen:]; del sys.path[sys.__plen:]; p=getattr(sys,'__egginsert',0); sys.path[p:p]=new; sys.__egginsert = p+len(new)
-
-Installing Django
-=================
-
-To install Django in the new virtual environment, run the following command::
+#. Install Django into the virtualenv::
 
     $ pip install django
 
@@ -95,39 +60,37 @@ For production::
 *note: We install production requirements this way because many Platforms as a
 Services expect a requirements.txt file in the root of projects.*
 
-Setup your Database
-===================
+Setup Your Local Database
+=========================
 
-Install postgres. Create a DB with your project name and a user with its role
-and password as the project_name with the command below::
+Install postgres. Create a DB and a superuser. The database's name, username, and password must all be the project name (icecream)::
 
-    $ createdb <project_role>
+    $ createdb icecream
     $ createuser -P
 
-Setup Production
-================
+Setup Production on Heroku
+==========================
 
-You need to set the `DJANGO_SETTINGS_MODULE` environment variable to
-`"{{ project_name }}.settings.production"` on your production environment::
+You will need the `Heroku Toolbelt`_ installed.
 
-    $ export DJANGO_SETTINGS_MODULE=icecream.settings.production
+.. _Heroku Toolbelt: https://toolbelt.heroku.com/
 
-On Heroku::
+Environment Variables
+---------------------
 
-   $ heroku config:set DJANGO_SETTINGS_MODULE=icecream.settings.production -r heroku
+The `DJANGO_SETTINGS_MODULE` environment variable must be set to `icecream.settings.production`. The `SECRET_KEY` environment variable must be set to a secure string::
 
-You need to set a `SECRET_KEY`::
+   $ heroku config:set DJANGO_SETTINGS_MODULE=icecream.settings.production SECRET_KEY=mysupersecretkey -r heroku
 
-    $ export SECRET_KEY=mysupersecretkey
+Settings
+--------
 
-On Heroku::
-
-   $ heroku config:set SECRET_KEY=mysupersecretkey -r heroku
-
-You need to set the `ALLOWED_HOSTS` setting in `production.py`. This should be
-the domain names of your production server::
+You need to set the `ALLOWED_HOSTS` setting in `production.py`. This should be the domain names of your production server::
 
    ALLOWED_HOSTS = ['eaticecream.com']
+
+Addons
+------
 
 You need the Redis Cloud addon or the `REDISCLOUD_URL` variable set. This is used by celery::
 
@@ -136,7 +99,9 @@ You need the Redis Cloud addon or the `REDISCLOUD_URL` variable set. This is use
 Acknowledgements
 ================
 
+    - Mad props to TwoScoops_.
     - Many thanks to Randall Degges for the inspiration to write the book and django-skel.
     - All of the contributors_ to this project.
 
 .. _contributors: https://github.com/twoscoops/django-twoscoops-project/blob/master/CONTRIBUTORS.txt
+.. _TwoScoops: https://github.com/twoscoops/django-twoscoops-project
