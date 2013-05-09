@@ -1,6 +1,6 @@
-========================
-django-twoscoops-project
-========================
+==============
+django-omakase
+==============
 
 A project template for Django 1.5.
 
@@ -8,7 +8,7 @@ To use this project follow these steps:
 
 #. Create your working environment
 #. Install Django
-#. Create the new project using the django-two-scoops template
+#. Create the new project using the django-omakase template
 #. Install additional dependencies
 #. Push to production
 
@@ -39,10 +39,9 @@ Working Environment
 Creating your project
 =====================
 
-To create a new Django project called '**icecream**' using
-django-twoscoops-project, run the following command::
+To create a new Django project called '**icecream**' using django-omakase, run the following command::
 
-    $ django-admin.py startproject --template=https://github.com/twoscoops/django-twoscoops-project/zipball/master --extension=py,rst,html --name=Procfile icecream
+    $ django-admin.py startproject --template=https://github.com/team-stroller/django-omakase/zipball/master --extension=py,rst,html --name=Procfile icecream
 
 Installation of Dependencies
 =============================
