@@ -7,3 +7,5 @@ South==0.7.6
 celery==3.0.12
 django-celery==3.0.11
 django-celery-with-redis==3.0
+newrelic==1.11.0.55
+gunicorn==0.17.0

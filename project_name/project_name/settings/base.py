@@ -8,7 +8,8 @@ import urlparse
 
 import djcelery
 
-redis_url = urlparse.urlparse(environ.get('REDISCLOUD_URL'))
+redis_url = urlparse.urlparse(environ.get('REDISCLOUD_URL',
+                                          'redis://localhost:6379/0'))
 
 
 ########## PATH CONFIGURATION
@@ -219,6 +220,7 @@ THIRD_PARTY_APPS = (
     # Database migration helpers:
     'south',
     'djcelery',
+    'gunicorn',
 )
 
 # Apps specific for this project go here.
