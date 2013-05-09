@@ -124,6 +124,11 @@ On Heroku::
 
    $ heroku config:set SECRET_KEY=mysupersecretkey -r heroku
 
+You need to set the `ALLOWED_HOSTS` setting in `production.py`. This should be
+the domain names of your production server::
+
+   ALLOWED_HOSTS = ['eaticecream.com']
+
 Acknowledgements
 ================
 
