@@ -63,3 +63,9 @@ MIDDLEWARE_CLASSES += (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 ########## END TOOLBAR CONFIGURATION
+
+
+########## CELERY CONFIGURATION
+# See: http://docs.celeryproject.org/en/latest/getting-started/brokers/redis.html#broker-redis
+BROKER_URL = 'redis://localhost:6379/0'
+########## END CELERY CONFIGURATION

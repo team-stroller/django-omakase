@@ -129,6 +129,10 @@ the domain names of your production server::
 
    ALLOWED_HOSTS = ['eaticecream.com']
 
+You need the Redis Cloud addon or the `REDISCLOUD_URL` variable set. This is used by celery::
+
+    $ heroku addons:add rediscloud
+
 Acknowledgements
 ================
 

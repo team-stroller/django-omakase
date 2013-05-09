@@ -4,6 +4,7 @@
 from os.path import abspath, basename, dirname, join, normpath
 from sys import path
 
+import djcelery
 
 ########## PATH CONFIGURATION
 # Absolute filesystem path to the Django project directory:
@@ -187,6 +188,7 @@ DJANGO_APPS = (
 THIRD_PARTY_APPS = (
     # Database migration helpers:
     'south',
+    'djcelery',
 )
 
 # Apps specific for this project go here.
@@ -239,3 +241,8 @@ LOGGING = {
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
 WSGI_APPLICATION = 'wsgi.application'
 ########## END WSGI CONFIGURATION
+
+########## CELERY CONFIGURATION
+# See: http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html
+djcelery.setup_loader()
+########## END CELERY CONFIGURATION
