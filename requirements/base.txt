@@ -9,3 +9,4 @@ newrelic==1.11.0.55
 gunicorn==0.17.0
 django-celery-with-redis==3.0
 django-celery==3.0.17
+django-redis-cache==0.9.7
