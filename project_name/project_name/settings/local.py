@@ -53,3 +53,7 @@ MIDDLEWARE_CLASSES += (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 ########## END TOOLBAR CONFIGURATION
+
+########## ALLOWED HOSTS
+ALLOWED_HOSTS = ['localhost', 'localhost:5000']
+########## END ALLOWED HOST
