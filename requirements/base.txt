@@ -4,7 +4,8 @@ django-braces==0.2.1
 django-model-utils==1.1.0
 logutils==0.3.3
 South==0.7.6
-django-celery-with-redis==3.0
 psycopg2==2.4.5
 newrelic==1.11.0.55
 gunicorn==0.17.0
+django-celery-with-redis==3.0
+django-celery==3.0.17
