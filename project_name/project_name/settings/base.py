@@ -11,6 +11,7 @@ import djcelery
 redis_url = urlparse.urlparse(environ.get('REDISCLOUD_URL',
                                           'redis://localhost:6379/0'))
 
+import djcelery
 
 ########## PATH CONFIGURATION
 # Absolute filesystem path to the Django project directory:
@@ -273,3 +274,8 @@ LOGGING = {
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#wsgi-application
 WSGI_APPLICATION = 'wsgi.application'
 ########## END WSGI CONFIGURATION
+
+########## CELERY CONFIGURATION
+# See: http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html
+djcelery.setup_loader()
+########## END CELERY CONFIGURATION
