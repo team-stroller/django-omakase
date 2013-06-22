@@ -59,3 +59,8 @@ MIDDLEWARE_CLASSES += (
 # See: http://docs.celeryproject.org/en/latest/getting-started/brokers/redis.html#broker-redis
 BROKER_URL = 'redis://localhost:6379/0'
 ########## END CELERY CONFIGURATION
+
+
+########## ALLOWED HOSTS
+ALLOWED_HOSTS = ['localhost', 'localhost:5000']
+########## END ALLOWED HOST
